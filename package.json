@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "firebase emulators:start --project demo-project --only auth,firestore,storage",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
