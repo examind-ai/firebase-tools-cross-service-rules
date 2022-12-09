@@ -2,8 +2,6 @@
 
 Demo repo created to reproduce bug described here: https://github.com/firebase/firebase-tools/issues/5251
 
-But as it turns out, that bug is not reproducible in this fresh environment, so now we need to find out why firestore.get() in storage.rules works in this repo but not in examind-web.
-
 ## Setup
 
 1. Clone this repo
@@ -22,12 +20,32 @@ npm start
 cd hosting && npm run dev
 ```
 
-2. Open site in browser
-3. Sign in with an arbitrary email
-4. Open Emulator Suite: http://localhost:4000/
-5. Upload a file named `file.txt` to `gs://demo-project.appspot.com/courses/course1/`
-6. Return to browser and try to download file
-7. Inspect dev tools console
+2. Open site in browser: http://localhost:5173/
+3. Sign in with any user account (create a new one if you need to)
+4. Upload a file then try to download it again
+5. Inspect error in dev tools console
+6. Inspect shell running Firebase Emulator, notice this exception:
+
+```
+com.google.firebase.rules.runtime.common.EvaluationException: Error: [path redacted]/storage.rules line [5], column [31]. Service call error. Function: [firestore.get], Argument: [path_value {
+  segments {
+    simple: "databases"
+  }
+  segments {
+    simple: "(default)"
+  }
+  segments {
+    simple: "documents"
+  }
+  segments {
+    simple: "courses"
+  }
+  segments {
+    simple: "course1"
+  }
+}
+].
+```
 
 ## Note:
 
