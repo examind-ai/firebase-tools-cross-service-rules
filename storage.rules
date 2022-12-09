@@ -3,6 +3,7 @@ service firebase.storage {
   match /b/{bucket}/o {
     match /courses/{courseId}/{fileName} {
       allow get: if firestore.get(/databases/(default)/documents/courses/$(courseId)).data.users[request.auth.uid].exists;
+      allow create: if true;
     }
   }
 }
