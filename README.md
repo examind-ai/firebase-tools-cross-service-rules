@@ -47,6 +47,8 @@ com.google.firebase.rules.runtime.common.EvaluationException: Error: [path redac
 ].
 ```
 
+The problem is due to the Firestore object having a field with a `null` value. Remove [this line](https://github.com/examind-ai/firebase-tools-cross-service-rules/blob/2af68b07df15b796d78174314f813d4102e75420/hosting/src/App.tsx#L28) and run the application again and exception will not be thrown.
+
 ## Note:
 
 In commit 1, I initialized hosting only (`firebase init hosting`), as initializing any other service failed if I didn't set up a default Firebase project from the cloud.
